@@ -2,33 +2,7 @@ package common
 
 import (
 	"fmt"
-	"time"
-
-	"github.com/notioncodes/types"
 )
-
-// AddMetadata adds metadata to an object.
-//
-// Arguments:
-// - objectType: The type of object.
-// - object: The object to add metadata to.
-//
-// Returns:
-// - The object with metadata.
-// - An error if the object is not a map[string]any.
-func AddMetadata(objectType types.ObjectType, object any) (map[string]any, error) {
-	objMap, ok := object.(map[string]any)
-	if !ok {
-		return nil, fmt.Errorf("expected map[string]any, got %T", object)
-	}
-
-	objMap["metadata"] = map[string]any{
-		"object_type": string(objectType),
-		"exported_at": time.Now(),
-	}
-
-	return objMap, nil
-}
 
 // MergeObjects merges two objects using type assertion for safety.
 //
